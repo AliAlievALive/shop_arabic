@@ -25,7 +25,6 @@ public class Product {
 
     @Column(name = "price")
     private int price;
-
     @CreationTimestamp
     @Column(name = "created_date")
     private Date dataCreated;
