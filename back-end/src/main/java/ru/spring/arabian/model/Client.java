@@ -1,11 +1,16 @@
 package ru.spring.arabian.model;
 
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import ru.spring.arabian.model.enums.Gender;
 
 import javax.persistence.*;
 import java.util.Date;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity(name = "client")
 public class Client {
     @Id
@@ -35,5 +40,4 @@ public class Client {
 
     @Column(name = "visit_date")
     private Date dateLastVisit;
-
 }
