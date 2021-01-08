@@ -13,13 +13,14 @@ public class Client {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "fullname")
+    @Column(name = "full_name")
     private String fullName;
 
+    @Enumerated(EnumType.ORDINAL)
     @Column(name = "gender")
     private Gender gender;
 
-    @Column(name = "phone-number")
+    @Column(name = "phone_number")
     private String phone;
 
     @Column(name = "age")

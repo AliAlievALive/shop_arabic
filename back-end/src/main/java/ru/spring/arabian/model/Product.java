@@ -19,6 +19,6 @@ public class Product {
     private int price;
 
     @CreationTimestamp
-    @Column(name = "created-date")
+    @Column(name = "created_date")
     private Date dataCreated;
 }
