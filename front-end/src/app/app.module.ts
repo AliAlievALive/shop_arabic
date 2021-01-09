@@ -9,7 +9,13 @@ import { ClientsComponent } from './components/clients/clients.component';
 import { ProductsComponent } from './components/products/products.component';
 import { ClientOptionsComponent } from './components/client-options/client-options.component';
 import { ProductOptionsComponent } from './components/product-options/product-options.component';
+import {RouterModule, Routes} from '@angular/router';
 
+const routes: Routes = [
+  {path: 'register', component: RegisterComponent },
+  {path: 'control', component: RegisterComponent },
+  {path: 'products', component: RegisterComponent }
+];
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +28,8 @@ import { ProductOptionsComponent } from './components/product-options/product-op
     ProductOptionsComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]
