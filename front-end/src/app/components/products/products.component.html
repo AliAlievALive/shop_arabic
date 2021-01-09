@@ -4,16 +4,18 @@
     <th scope="col">#ID</th>
     <th scope="col">Наименование</th>
     <th scope="col">Цена</th>
+    <th scope="col">Готово к продаже</th>
     <th scope="col">Дата внесения</th>
     <th scope="col"></th>
   </tr>
   </thead>
   <tbody>
-  <tr>
-    <th scope="row">1</th>
-    <td>Бэлеш</td>
-    <td>400</td>
-    <td>12.12.12</td>
+  <tr *ngFor="let product of products">
+    <th scope="row">{{product.id}}</th>
+    <td>{{product.name}}</td>
+    <td>{{product.price}}</td>
+    <td>{{product.stock}}</td>
+    <td>{{product.created}}</td>
     <td>
       <button class="btn btn-success" routerLink="/product_options">Update</button>
       <button class="btn btn-danger">Delete</button>

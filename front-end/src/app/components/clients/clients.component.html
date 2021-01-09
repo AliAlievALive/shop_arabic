@@ -13,15 +13,15 @@
   </tr>
   </thead>
   <tbody>
-  <tr>
-    <th scope="row">1</th>
-    <td>Almir</td>
-    <td>MALE</td>
-    <td>89600478632</td>
-    <td>33</td>
-    <td>Kazan</td>
-    <td>12.12.12</td>
-    <td>12.12.12</td>
+  <tr *ngFor="let client of clients">
+    <th scope="row">{{client.id}}</th>
+    <td>{{client.name}}</td>
+    <td>{{client.gender}}</td>
+    <td>{{client.phone}}</td>
+    <td>{{client.age}}</td>
+    <td>{{client.address}}</td>
+    <td>{{client.created}}</td>
+    <td>{{client.lastVisit}}</td>
     <td>
       <button class="btn btn-success" routerLink="/client_options">Update</button>
       <button class="btn btn-danger">Delete</button>

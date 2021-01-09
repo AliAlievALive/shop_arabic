@@ -10,6 +10,7 @@ import {ProductsComponent} from './components/products/products.component';
 import {ClientOptionsComponent} from './components/client-options/client-options.component';
 import {ProductOptionsComponent} from './components/product-options/product-options.component';
 import {RouterModule, Routes} from '@angular/router';
+import {HttpClientModule} from '@angular/common/http';
 
 const routes: Routes = [
   {path: 'register', component: RegisterComponent},
@@ -33,7 +34,8 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
