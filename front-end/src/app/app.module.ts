@@ -7,6 +7,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ClientsComponent } from './components/clients/clients.component';
 import { OptionsComponent } from './components/options/options.component';
+import { ProductsComponent } from './components/products/products.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { OptionsComponent } from './components/options/options.component';
     HeaderComponent,
     RegisterComponent,
     ClientsComponent,
-    OptionsComponent
+    OptionsComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule
