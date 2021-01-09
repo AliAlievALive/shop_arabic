@@ -15,10 +15,10 @@ import {RouteActivatedService} from './service/route-activated.service';
 
 const routes: Routes = [
   {path: 'register', component: RegisterComponent},
-  {path: 'product_options', component: ProductOptionsComponent},
   {path: 'client_options', component: ClientOptionsComponent, canActivate: [RouteActivatedService]},
-  {path: 'products', component: ProductsComponent, canActivate: [RouteActivatedService]},
-  {path: 'clients', component: ClientsComponent},
+  {path: 'product_options', component: ProductOptionsComponent, canActivate: [RouteActivatedService]},
+  {path: 'clients', component: ClientsComponent, canActivate: [RouteActivatedService]},
+  {path: 'products', component: ProductsComponent},
   {path: '', component: ProductsComponent},
   {path: '**', component: ProductsComponent}
 ];
