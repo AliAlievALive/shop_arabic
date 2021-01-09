@@ -8,6 +8,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { ClientsComponent } from './components/clients/clients.component';
 import { ProductsComponent } from './components/products/products.component';
 import { ClientOptionsComponent } from './components/client-options/client-options.component';
+import { ProductOptionsComponent } from './components/product-options/product-options.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ClientOptionsComponent } from './components/client-options/client-optio
     RegisterComponent,
     ClientsComponent,
     ProductsComponent,
-    ClientOptionsComponent
+    ClientOptionsComponent,
+    ProductOptionsComponent
   ],
   imports: [
     BrowserModule
