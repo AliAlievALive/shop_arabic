@@ -6,8 +6,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ClientsComponent } from './components/clients/clients.component';
-import { OptionsComponent } from './components/options/options.component';
 import { ProductsComponent } from './components/products/products.component';
+import { ClientOptionsComponent } from './components/client-options/client-options.component';
 
 @NgModule({
   declarations: [
@@ -16,8 +16,8 @@ import { ProductsComponent } from './components/products/products.component';
     HeaderComponent,
     RegisterComponent,
     ClientsComponent,
-    OptionsComponent,
-    ProductsComponent
+    ProductsComponent,
+    ClientOptionsComponent
   ],
   imports: [
     BrowserModule
