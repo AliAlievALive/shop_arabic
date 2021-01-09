@@ -11,13 +11,15 @@ import {ClientOptionsComponent} from './components/client-options/client-options
 import {ProductOptionsComponent} from './components/product-options/product-options.component';
 import {RouterModule, Routes} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
+import {RouteActivatedService} from './service/route-activated.service';
 
 const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'product_options', component: ProductOptionsComponent},
-  {path: 'client_options', component: ClientOptionsComponent},
-  {path: 'products', component: ProductsComponent},
+  {path: 'client_options', component: ClientOptionsComponent, canActivate: [RouteActivatedService]},
+  {path: 'products', component: ProductsComponent, canActivate: [RouteActivatedService]},
   {path: 'clients', component: ClientsComponent},
+  {path: '', component: ProductsComponent},
   {path: '**', component: ProductsComponent}
 ];
 
