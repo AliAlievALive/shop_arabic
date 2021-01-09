@@ -1,3 +1,11 @@
 .table {
   margin-top: 50px;
 }
+
+.btn-success {
+  margin-right: 5px;
+}
+
+.btn-primary {
+  margin: 15px;
+}
