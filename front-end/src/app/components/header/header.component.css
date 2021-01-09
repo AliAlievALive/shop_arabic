@@ -1,6 +1,11 @@
-.mr-auto, .mx-auto {
-  margin-right: 50px !important;
+.me-auto {
+  margin-right: 133px !important;
 }
+
+.search {
+  margin-right: 5px;
+}
+
 .control {
   position: absolute;
   right: 39px;
