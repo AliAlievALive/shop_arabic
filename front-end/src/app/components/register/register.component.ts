@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {LoginService} from '../../service/login.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +13,8 @@ export class RegisterComponent implements OnInit {
   loginFormGroup: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
-              private loginService: LoginService) { }
+              private loginService: LoginService,
+              private route: Router) { }
 
   ngOnInit(): void {
     this.loginFormGroup = this.formBuilder.group({
@@ -25,7 +27,6 @@ export class RegisterComponent implements OnInit {
 
   OnSubmit() {
     this.loginService.login(this.loginFormGroup.get('admin').value.username, this.loginFormGroup.get('admin').value.password);
-    // console.log(this.loginFormGroup.get('admin').value.username);
-    // console.log(this.loginFormGroup.get('admin').value.password);
+    this.route.navigateByUrl('products');
   }
 }
