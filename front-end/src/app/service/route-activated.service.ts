@@ -15,7 +15,7 @@ export class RouteActivatedService implements CanActivate{
     if (this.loginService.isLogin()) {
       return true;
     }
-    this.route.navigateByUrl('/login');
+    this.route.navigateByUrl('/content');
     return false;
   }
 }
