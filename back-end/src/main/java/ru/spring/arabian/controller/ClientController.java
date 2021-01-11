@@ -33,4 +33,10 @@ public class ClientController {
     public Client save(@RequestBody Client client) {
         return clientService.save(client);
     }
+
+    @PutMapping("clients")
+    public Client update(@RequestBody Client client, @RequestParam Long id) {
+        client.setId(id);
+        return clientService.save(client);
+    }
 }
