@@ -2,7 +2,6 @@ package ru.spring.arabian.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.spring.arabian.dao.ClientRepository;
 import ru.spring.arabian.dao.ProductRepository;
 import ru.spring.arabian.model.Product;
 
@@ -27,5 +26,9 @@ public class ProductService {
 
     public Product save(Product product) {
         return productRepository.save(product);
+    }
+
+    public void delete(Long id) {
+        productRepository.deleteById(id);
     }
 }

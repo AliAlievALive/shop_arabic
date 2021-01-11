@@ -39,4 +39,9 @@ public class ClientController {
         client.setId(id);
         return clientService.save(client);
     }
+
+    @DeleteMapping("clients")
+    public void delete(@RequestParam Long id) {
+        clientService.delete(id);
+    }
 }
