@@ -2,6 +2,7 @@ package ru.spring.arabian.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import ru.spring.arabian.model.Client;
 import ru.spring.arabian.model.Product;
 import ru.spring.arabian.service.ClientService;
 import ru.spring.arabian.service.ProductService;
@@ -26,7 +27,12 @@ public class ProductController {
     }
 
     @GetMapping("{id}")
-    public Product getProduct(@RequestParam Long id) {
-        return productService.getProduct(id);
+    public Product getProduct(@PathVariable String id) {
+        return productService.getProduct(Long.valueOf(id));
+    }
+
+    @PostMapping
+    public Product save(@RequestBody Product product) {
+        return productService.save(product);
     }
 }

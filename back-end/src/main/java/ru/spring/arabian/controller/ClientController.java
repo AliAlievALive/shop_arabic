@@ -28,4 +28,9 @@ public class ClientController {
     public Client getClient(@RequestParam Long id) {
         return clientService.getClient(id);
     }
+
+    @PostMapping("clients")
+    public Client save(@RequestBody Client client) {
+        return clientService.save(client);
+    }
 }
