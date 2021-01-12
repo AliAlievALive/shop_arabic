@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
+import {Client} from '../../model/client';
+import {ClientService} from '../../service/client.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-client-options',
@@ -10,16 +13,18 @@ export class ClientOptionsComponent implements OnInit {
 
   clientGroup: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder,
+              private serviceClient: ClientService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.clientGroup= this.formBuilder.group({
       client: this.formBuilder.group({
-        name: ['Имя'],
-        age: ['Возраст'],
-        address: ['Адрес'],
-        phone: ['Телефонный номер'],
-        gender: ['Пол'],
+        name: [''],
+        age: [''],
+        address: [''],
+        phone: [''],
+        gender: [''],
         // dateCreated: [''],
         // dateLastVisit: [''],
       })
@@ -47,10 +52,16 @@ export class ClientOptionsComponent implements OnInit {
   }
 
   add() {
-    console.log(this.getName());
-    console.log(this.getAge());
-    console.log(this.getAddress());
-    console.log(this.getPhone());
-    console.log(this.getGender());
+    const client = new Client(
+      this.getName(),
+      this.getGender(),
+      this.getAge(),
+      this.getAddress(),
+      this.getPhone()
+    );
+
+    this.serviceClient.addClient(client).subscribe(() => {
+      this.router.navigateByUrl('/clients');
+    });
   }
 }

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Product} from '../model/product';
@@ -21,5 +21,9 @@ export class ProductService {
 
   deleteProduct(id: number) {
     return this.httpProduct.delete(this.urlProducts + `?id=${id}`);
+  }
+
+  addProduct(product: Product) {
+    return this.httpProduct.post(this.urlProducts, product);
   }
 }

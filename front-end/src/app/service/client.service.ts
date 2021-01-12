@@ -20,7 +20,11 @@ export class ClientService {
     );
   }
 
-  deleteClients(id: number) {
+  deleteClient(id: number) {
     return this.httpClient.delete(this.urlClients + `?id=${id}`);
+  }
+
+  addClient(client: Client) {
+    return this.httpClient.post(this.urlClients, client)
   }
 }

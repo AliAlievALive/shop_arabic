@@ -2,15 +2,15 @@
   <form [formGroup]="productGroup" (ngSubmit)="add()">
     <div formGroupName="product">
       <div class="mt-3">
-        <input type="text" class="form-control" placeholder="Наименование товара" aria-label="Name">
+        <input formControlName="name" type="text" class="form-control" placeholder="Наименование товара" aria-label="Name">
       </div>
 
       <div class="mt-3">
-        <input type="number" class="form-control" placeholder="Цена" aria-label="Price">
+        <input formControlName="price" type="number" class="form-control" placeholder="Цена" aria-label="Price">
       </div>
 
       <div class="mt-3">
-        <input type="number" class="form-control" placeholder="Готово к продаже" aria-label="In Stock">
+        <input formControlName="stock" type="number" class="form-control" placeholder="Готово к продаже" aria-label="In Stock">
       </div>
     </div>
 
