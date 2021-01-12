@@ -2,3 +2,8 @@
   margin: auto !important;
   max-width: 300px !important;
 }
+
+.form-select {
+  margin: auto;
+  padding: 8px;
+}

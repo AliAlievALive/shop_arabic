@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-product-options',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductOptionsComponent implements OnInit {
 
-  constructor() { }
+  productGroup: FormGroup;
+
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.productGroup = this.formBuilder.group({
+      product: this.formBuilder.group({
+        name: ['Наименование'],
+        price: ['Цена'],
+        stock: ['Доступны к покупке'],
+        // dateCreated: [''],
+      })
+    })
   }
 
+  add() {
+
+  }
 }
