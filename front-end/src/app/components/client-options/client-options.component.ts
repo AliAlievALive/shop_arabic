@@ -15,7 +15,7 @@ export class ClientOptionsComponent implements OnInit {
   ngOnInit(): void {
     this.clientGroup= this.formBuilder.group({
       client: this.formBuilder.group({
-        userName: ['Имя'],
+        name: ['Имя'],
         age: ['Возраст'],
         address: ['Адрес'],
         phone: ['Телефонный номер'],
@@ -26,7 +26,31 @@ export class ClientOptionsComponent implements OnInit {
     })
   }
 
-  add() {
+  getName() {
+    return this.clientGroup.get('client').value.name;
+  }
 
+  getAge() {
+    return this.clientGroup.get('client').value.age;
+  }
+
+  getAddress() {
+    return this.clientGroup.get('client').value.address;
+  }
+
+  getPhone() {
+    return this.clientGroup.get('client').value.phone;
+  }
+
+  getGender() {
+    return this.clientGroup.get('client').value.gender;
+  }
+
+  add() {
+    console.log(this.getName());
+    console.log(this.getAge());
+    console.log(this.getAddress());
+    console.log(this.getPhone());
+    console.log(this.getGender());
   }
 }
