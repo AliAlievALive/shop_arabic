@@ -28,9 +28,17 @@ export class ClientsComponent implements OnInit {
   }
 
   deleteClient(id: number) {
+    const index = this.clients.findIndex(client => client.id == id);
     this.clientService.deleteClients(id).subscribe(() => {
+      this.clients.splice(index, 1);
       this.getClients();
       this.message = `Клиент успешно удален`;
     });
+  }
+
+  showMessage() {
+    setTimeout(() => {
+      this.message = '';
+    }, 3000);
   }
 }

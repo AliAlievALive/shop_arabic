@@ -28,9 +28,17 @@ export class ProductsComponent implements OnInit {
   }
 
   deleteProduct(id: number) {
+    const index = this.products.findIndex(product => product.id == id);
     this.productService.deleteProduct(id).subscribe(() => {
-      this.getProducts();
+      this.products.splice(index, 1);
       this.message = 'Продукт удален';
+      this.showMessage();
     });
+  }
+
+  showMessage() {
+    setTimeout(() => {
+      this.message = '';
+    }, 3000);
   }
 }

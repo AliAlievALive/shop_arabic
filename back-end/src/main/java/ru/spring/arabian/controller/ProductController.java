@@ -40,8 +40,8 @@ public class ProductController {
         return productService.save(product);
     }
 
-    @DeleteMapping("{id}")
-    public void delete(@PathVariable Long id) {
+    @DeleteMapping
+    public void delete(@RequestParam Long id) {
         productService.delete(id);
     }
 }
