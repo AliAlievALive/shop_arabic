@@ -31,5 +31,5 @@ public class Product {
 
     @CreationTimestamp
     @Column(name = "created_date")
-    private Date dataCreated;
+    private Date dateCreated;
 }

@@ -10,6 +10,7 @@ import {Product} from '../../model/product';
 export class ProductsComponent implements OnInit {
 
   products: Product[];
+  message: string;
 
   constructor(private productService: ProductService) {
   }
@@ -24,5 +25,12 @@ export class ProductsComponent implements OnInit {
         this.products = data;
       }
     );
+  }
+
+  deleteProduct(id: number) {
+    this.productService.deleteProduct(id).subscribe(() => {
+      this.getProducts();
+      this.message = 'Продукт удален';
+    });
   }
 }

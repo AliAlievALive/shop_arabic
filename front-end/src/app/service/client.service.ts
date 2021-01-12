@@ -19,4 +19,8 @@ export class ClientService {
       map(res => res)
     );
   }
+
+  deleteClients(id: number) {
+    return this.httpClient.delete(this.urlClients + `?id=${id}`);
+  }
 }

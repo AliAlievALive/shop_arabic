@@ -18,4 +18,8 @@ export class ProductService {
       map(res => res)
     );
   }
+
+  deleteProduct(id: number) {
+    return this.httpProduct.delete(this.urlProducts + `?id=${id}`);
+  }
 }

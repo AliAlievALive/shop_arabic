@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Client} from '../../model/client';
 import {ClientService} from '../../service/client.service';
 
@@ -10,19 +10,27 @@ import {ClientService} from '../../service/client.service';
 export class ClientsComponent implements OnInit {
 
   clients: Client[];
+  message: string;
 
   constructor(private clientService: ClientService) {
   }
 
   ngOnInit(): void {
-    this.getClients()
+    this.getClients();
   }
 
   getClients() {
     this.clientService.getClients().subscribe(
-      data => {
-        this.clients = data;
-      }
+        data => {
+          this.clients = data;
+        }
     );
+  }
+
+  deleteClient(id: number) {
+    this.clientService.deleteClients(id).subscribe(() => {
+      this.getClients();
+      this.message = `Клиент успешно удален`;
+    });
   }
 }
