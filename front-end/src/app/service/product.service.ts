@@ -26,4 +26,10 @@ export class ProductService {
   addProduct(product: Product) {
     return this.httpProduct.post(this.urlProducts, product);
   }
+
+  getProduct(id: number): Observable<Product> {
+    return this.httpProduct.get<Product>(`http://localhost:8080/product/${id}`).pipe(
+      map(res => res)
+    )
+  }
 }

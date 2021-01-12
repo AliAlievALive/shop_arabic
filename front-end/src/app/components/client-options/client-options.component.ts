@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {Client} from '../../model/client';
 import {ClientService} from '../../service/client.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-client-options',
@@ -12,13 +12,22 @@ import {Router} from '@angular/router';
 export class ClientOptionsComponent implements OnInit {
 
   clientGroup: FormGroup;
+  id: number;
+  myClient: Client = new Client('', '', '', '', '');
 
   constructor(private formBuilder: FormBuilder,
               private serviceClient: ClientService,
-              private router: Router) { }
+              private router: Router,
+              private root: ActivatedRoute) {
+  }
 
   ngOnInit(): void {
-    this.clientGroup= this.formBuilder.group({
+    this.id = +this.root.snapshot.paramMap.get('id');
+    console.log(this.id);
+    if (this.id) {
+      this.serviceClient.getClient(this.id).subscribe(res => this.myClient = res);
+    }
+    this.clientGroup = this.formBuilder.group({
       client: this.formBuilder.group({
         name: [''],
         age: [''],
@@ -28,7 +37,7 @@ export class ClientOptionsComponent implements OnInit {
         // dateCreated: [''],
         // dateLastVisit: [''],
       })
-    })
+    });
   }
 
   getName() {

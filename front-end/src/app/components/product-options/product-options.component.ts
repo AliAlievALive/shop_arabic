@@ -3,7 +3,7 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {Product} from '../../model/product';
 import {ProductService} from '../../service/product.service';
 import {ClientService} from '../../service/client.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-product-options',
@@ -13,17 +13,25 @@ import {Router} from '@angular/router';
 export class ProductOptionsComponent implements OnInit {
 
   productGroup: FormGroup;
+  id: number;
+  myProduct: Product = new Product('', undefined, undefined);
 
   constructor(private formBuilder: FormBuilder,
               private serviceProd: ProductService,
-              private router: Router) { }
+              private router: Router,
+              private root: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.id = +this.root.snapshot.paramMap.get('id');
+    console.log(this.id);
+    if (this.id) {
+      this.serviceProd.getProduct(this.id).subscribe(res => this.myProduct = res);
+    }
     this.productGroup = this.formBuilder.group({
       product: this.formBuilder.group({
-        name: ['Наименование'],
-        price: ['Цена'],
-        stock: ['Доступны к покупке'],
+        name: [''],
+        price: [''],
+        stock: [''],
         // dateCreated: [''],
       })
     })

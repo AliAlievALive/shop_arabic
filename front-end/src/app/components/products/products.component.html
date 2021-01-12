@@ -20,7 +20,7 @@
     <td>{{product.stock}}</td>
     <td>{{product.dateCreated}}</td>
     <td>
-      <button class="btn btn-success" routerLink="/product_options">Update</button>
+      <button class="btn btn-success" routerLink="/product_options/{{product.id}}">Update</button>
       <button class="btn btn-danger" (click)="deleteProduct(product.id)">Delete</button>
     </td>
   </tr>

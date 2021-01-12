@@ -27,4 +27,10 @@ export class ClientService {
   addClient(client: Client) {
     return this.httpClient.post(this.urlClients, client)
   }
+
+  getClient(id: number): Observable<Client> {
+    return this.httpClient.get<Client>(`http://localhost:8080/system/client?id=${id}`).pipe(
+      map(res => res)
+    );
+  }
 }
