@@ -9,19 +9,13 @@ import {map} from 'rxjs/operators';
 })
 export class ProductService {
 
-  private urlProducts = 'http://localhost:8080/api/products';
+  private urlProducts = 'http://localhost:8080/products';
 
   constructor(private httpProduct: HttpClient) { }
 
   getProducts(): Observable<Product[]> {
-    return this.httpProduct.get<GetResponseProduct>(this.urlProducts).pipe(
-      map(res => res._embedded.products)
+    return this.httpProduct.get<Product[]>(this.urlProducts).pipe(
+      map(res => res)
     );
   }
-}
-
-interface GetResponseProduct {
-  _embedded: {
-    products: Product[]
-  };
 }

@@ -9,20 +9,14 @@ import {map} from 'rxjs/operators';
 })
 export class ClientService {
 
-  private urlClients = 'http://localhost:8080/api/clients';
+  private urlClients = 'http://localhost:8080/system/clients';
 
   constructor(private httpClient: HttpClient) {
   }
 
   getClients(): Observable<Client[]> {
-    return this.httpClient.get<GetResponseClient>(this.urlClients).pipe(
-      map(res => res._embedded.clients)
+    return this.httpClient.get<Client[]>(this.urlClients).pipe(
+      map(res => res)
     );
   }
-}
-
-interface GetResponseClient {
-  _embedded: {
-    clients: Client[]
-  };
 }
