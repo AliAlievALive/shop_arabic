@@ -23,9 +23,10 @@ export class ClientOptionsComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = +this.root.snapshot.paramMap.get('id');
-    console.log(this.id);
     if (this.id) {
-      this.serviceClient.getClient(this.id).subscribe(res => this.myClient = res);
+      this.serviceClient.getClient(this.id).subscribe(res => {
+        this.myClient = res;
+      });
     }
     this.clientGroup = this.formBuilder.group({
       client: this.formBuilder.group({
@@ -41,23 +42,23 @@ export class ClientOptionsComponent implements OnInit {
   }
 
   getName() {
-    return this.clientGroup.get('client').value.name;
+    return this.clientGroup.get("client").value.name;
   }
 
   getAge() {
-    return this.clientGroup.get('client').value.age;
+    return this.clientGroup.get("client").value.age;
   }
 
   getAddress() {
-    return this.clientGroup.get('client').value.address;
+    return this.clientGroup.get("client").value.address;
   }
 
   getPhone() {
-    return this.clientGroup.get('client').value.phone;
+    return this.clientGroup.get("client").value.phone;
   }
 
   getGender() {
-    return this.clientGroup.get('client').value.gender;
+    return this.clientGroup.get("client").value.gender;
   }
 
   add() {
@@ -65,12 +66,29 @@ export class ClientOptionsComponent implements OnInit {
       this.getName(),
       this.getGender(),
       this.getAge(),
-      this.getAddress(),
-      this.getPhone()
+      this.getPhone(),
+      this.getAddress()
     );
-
-    this.serviceClient.addClient(client).subscribe(() => {
-      this.router.navigateByUrl('/clients');
-    });
+    if (!this.id) {
+      if (!client.gender) {
+        client.gender = 'Н'
+      }
+      this.serviceClient.addClient(client).subscribe(() => {
+        this.router.navigateByUrl('/clients');
+      });
+    } else {
+      for (const key of Object.keys(client)) {
+        if (client[key] == '') {
+          client[key] = this.myClient[key];
+        }
+      }
+      client.id = this.myClient.id;
+      if (!client.gender) {
+        client.gender = 'Н'
+      }
+      this.serviceClient.editClient(client).subscribe(() => {
+        this.router.navigateByUrl('/clients');
+      });
+    }
   }
 }

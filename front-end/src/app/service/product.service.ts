@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Product} from '../model/product';
 import {map} from 'rxjs/operators';
+import {Client} from '../model/client';
 
 @Injectable({
   providedIn: 'root'
@@ -28,8 +29,12 @@ export class ProductService {
   }
 
   getProduct(id: number): Observable<Product> {
-    return this.httpProduct.get<Product>(`http://localhost:8080/product/${id}`).pipe(
+    return this.httpProduct.get<Product>(this.urlProducts + `/${id}`).pipe(
       map(res => res)
     )
+  }
+
+  editProduct(product: Product) {
+    return this.httpProduct.put(this.urlProducts + `?id=${product.id}`, product);
   }
 }

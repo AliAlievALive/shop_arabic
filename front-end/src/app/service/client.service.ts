@@ -33,4 +33,8 @@ export class ClientService {
       map(res => res)
     );
   }
+
+  editClient(client: Client) {
+    return this.httpClient.put(this.urlClients + `?id=${client.id}`, client);
+  }
 }

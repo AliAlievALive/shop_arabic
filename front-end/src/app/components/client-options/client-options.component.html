@@ -2,12 +2,12 @@
   <form [formGroup]="clientGroup" (ngSubmit)="add()" class="login">
     <div formGroupName="client">
       <div class="mt-3" style="margin-bottom: 16px">
-        <input [value]="myClient.fullName" formControlName="name" type="text" class="form-control" placeholder="Имя" aria-label="Full Name">
+        <input [value]="myClient.fullName" formControlName="name" type="text" class="form-control" placeholder="Имя" aria-label="fullName">
       </div>
 
-      <select [value]="myClient.gender" formControlName="gender" class="form-select" aria-label="Default select example">
-        <option value="MALE">М</option>
-        <option value="FEMALE">Ж</option>
+      <select [value]="myClient.gender" formControlName="gender" class="form-select" aria-label="gender">
+        <option value="М">М</option>
+        <option value="Ж">Ж</option>
       </select>
 
       <div class="mt-3">

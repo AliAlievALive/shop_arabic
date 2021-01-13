@@ -1,5 +1,5 @@
 package ru.spring.arabian.model.enums;
 
 public enum Gender {
-    MALE, FEMALE
+    М, Ж, Н
 }

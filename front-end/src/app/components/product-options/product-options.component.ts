@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {Product} from '../../model/product';
 import {ProductService} from '../../service/product.service';
-import {ClientService} from '../../service/client.service';
 import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
@@ -23,9 +22,9 @@ export class ProductOptionsComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = +this.root.snapshot.paramMap.get('id');
-    console.log(this.id);
     if (this.id) {
-      this.serviceProd.getProduct(this.id).subscribe(res => this.myProduct = res);
+      this.serviceProd.getProduct(this.id).subscribe(res =>
+        this.myProduct = res);
     }
     this.productGroup = this.formBuilder.group({
       product: this.formBuilder.group({
@@ -34,19 +33,19 @@ export class ProductOptionsComponent implements OnInit {
         stock: [''],
         // dateCreated: [''],
       })
-    })
+    });
   }
 
   getName() {
-    return this.productGroup.get('product').value.name;
+    return this.productGroup.get("product").value.name;
   }
 
   getPrice() {
-    return this.productGroup.get('product').value.price;
+    return this.productGroup.get("product").value.price;
   }
 
   getStock() {
-    return this.productGroup.get('product').value.stock;
+    return this.productGroup.get("product").value.stock;
   }
 
   add() {
@@ -55,9 +54,21 @@ export class ProductOptionsComponent implements OnInit {
       this.getPrice(),
       this.getStock()
     );
-
-    this.serviceProd.addProduct(prod).subscribe(() => {
-      this.router.navigateByUrl('/clients');
-    });
+    if (!this.id) {
+      this.serviceProd.addProduct(prod).subscribe(() => {
+        this.router.navigateByUrl('/products');
+      });
+    } else {
+      for (const key of Object.keys(prod)) {
+        if (prod[key] == '') {
+          prod[key] = this.myProduct[key];
+        }
+      }
+      prod.id = this.myProduct.id;
+      prod.dateCreated = new Date();
+      this.serviceProd.editProduct(prod).subscribe(() => {
+        this.router.navigateByUrl('/products');
+      });
+    }
   }
 }
