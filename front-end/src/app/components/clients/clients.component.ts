@@ -33,6 +33,7 @@ export class ClientsComponent implements OnInit {
       this.clients.splice(index, 1);
       this.getClients();
       this.message = `Клиент успешно удален`;
+      this.showMessage();
     });
   }
 

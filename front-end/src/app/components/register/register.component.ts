@@ -11,6 +11,7 @@ import {Router} from '@angular/router';
 export class RegisterComponent implements OnInit {
 
   loginFormGroup: FormGroup;
+  invalidMessage: string;
 
   constructor(private formBuilder: FormBuilder,
               private loginService: LoginService,
@@ -26,7 +27,19 @@ export class RegisterComponent implements OnInit {
   }
 
   OnSubmit() {
-    this.loginService.login(this.loginFormGroup.get('admin').value.username, this.loginFormGroup.get('admin').value.password);
-    this.route.navigateByUrl('products');
+    const result = this.loginService.login(this.loginFormGroup.get('admin').value.username, this.loginFormGroup.get('admin').value.password);
+
+    if (result == true) {
+      this.route.navigateByUrl('products');
+    } else {
+      this.invalidMessage = 'Invalid username and/or password';
+      this.showMessage();
+    }
+  }
+
+  showMessage() {
+    setTimeout(() => {
+      this.invalidMessage = '';
+    }, 3000);
   }
 }
