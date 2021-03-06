@@ -1,0 +1,12 @@
+<div style="position: relative; width: 300px">
+  <app-product-form [products]="products"
+                    [editedProduct]="product">
+
+  </app-product-form>
+  <div *ngFor="let product of products">
+    <app-product-row [product]="product"
+                     (productToEdit)="editProduct($event)"
+                     (productToDel)="deleteProduct($event)">
+    </app-product-row>
+  </div>
+</div>

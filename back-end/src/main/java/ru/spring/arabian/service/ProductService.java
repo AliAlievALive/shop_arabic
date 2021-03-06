@@ -6,6 +6,7 @@ import ru.spring.arabian.dao.ProductRepository;
 import ru.spring.arabian.model.Product;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class ProductService {
@@ -20,7 +21,7 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public Product getProduct(Long id) {
+    public Product getProduct(UUID id) {
         return productRepository.findById(id).get();
     }
 
@@ -28,7 +29,7 @@ public class ProductService {
         return productRepository.save(product);
     }
 
-    public void delete(Long id) {
+    public void delete(UUID id) {
         productRepository.deleteById(id);
     }
 }

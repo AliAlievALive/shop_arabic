@@ -1,0 +1,8 @@
+<div>
+  <i>({{product.id}})</i>
+  {{product.name}}
+  <span style="position: absolute; right: 0">
+    <input type="button" value="Edit" (click)="edit(product)">
+    <input type="button" value="&times;" (click)="delete(product)">
+  </span>
+</div>

@@ -6,6 +6,7 @@ import ru.spring.arabian.model.Product;
 import ru.spring.arabian.service.ProductService;
 
 import java.util.List;
+import java.util.UUID;
 
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -25,8 +26,8 @@ public class ProductController {
     }
 
     @GetMapping("{id}")
-    public Product getProduct(@PathVariable String id) {
-        return productService.getProduct(Long.valueOf(id));
+    public Product getProduct(@PathVariable UUID id) {
+        return productService.getProduct(id);
     }
 
     @PostMapping
@@ -35,13 +36,13 @@ public class ProductController {
     }
 
     @PutMapping
-    public Product update(@RequestBody Product product, @RequestParam Long id) {
+    public Product update(@RequestBody Product product, @RequestParam UUID id) {
         product.setId(id);
         return productService.save(product);
     }
 
     @DeleteMapping
-    public void delete(@RequestParam Long id) {
+    public void delete(@RequestParam UUID id) {
         productService.delete(id);
     }
 }

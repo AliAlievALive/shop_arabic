@@ -6,7 +6,6 @@ import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import ru.spring.arabian.model.Client;
 import ru.spring.arabian.model.Product;
 
 import javax.persistence.EntityManager;
@@ -28,7 +27,6 @@ public class ConfigureRepositoryRestConfiguration implements RepositoryRestConfi
     @Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
         HttpMethod[] unsupported = {HttpMethod.GET, HttpMethod.DELETE, HttpMethod.POST, HttpMethod.PUT};
-        disableHttpMethod(Client.class, config, unsupported);
         disableHttpMethod(Product.class, config, unsupported);
         exposeIds(config);
     }
