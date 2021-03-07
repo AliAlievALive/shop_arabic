@@ -1,6 +1,11 @@
 package ru.spring.arabian.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.spring.arabian.model.Product;
 import ru.spring.arabian.service.ProductService;
@@ -21,8 +26,23 @@ public class ProductController {
     }
 
     @GetMapping
-    public List<Product> getProducts() {
-        return productService.getProducts();
+    public List<Product> viewProducts(
+            @RequestParam(required = false) String filter,
+            Model model,
+            @PageableDefault(sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable
+    ) {
+        Page<Product> page;
+
+        if (filter != null && !filter.isEmpty()) {
+            page = productService.findAllByNameContaining(filter, pageable);
+        } else {
+            page = productService.findAll(pageable);
+        }
+        model.addAttribute("page", page);
+        model.addAttribute("url", "/products");
+        model.addAttribute("filter", filter);
+
+        return page.getContent();
     }
 
     @GetMapping("{id}")

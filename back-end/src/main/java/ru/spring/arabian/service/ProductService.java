@@ -1,6 +1,8 @@
 package ru.spring.arabian.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ru.spring.arabian.dao.ProductRepository;
 import ru.spring.arabian.model.Product;
@@ -31,5 +33,13 @@ public class ProductService {
 
     public void delete(UUID id) {
         productRepository.deleteById(id);
+    }
+
+    public Page<Product> findAllByNameContaining(String name, Pageable pageable) {
+        return productRepository.findAllByNameContaining(name, pageable);
+    }
+
+    public Page<Product> findAll(Pageable pageable) {
+        return productRepository.findAll(pageable);
     }
 }
