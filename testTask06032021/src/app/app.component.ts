@@ -13,7 +13,7 @@ export class AppComponent {
   productToUpdate: Product;
 
   constructor(private http: HttpService) {
-    this.products = this.http.getProducts();
+    this.getProductsFromServer();
   }
 
   getProductsFromServer(): void {
