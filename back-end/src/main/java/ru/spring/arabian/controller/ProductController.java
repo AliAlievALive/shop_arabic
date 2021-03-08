@@ -1,11 +1,17 @@
 package ru.spring.arabian.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.spring.arabian.model.Product;
 import ru.spring.arabian.service.ProductService;
 
 import java.util.List;
+import java.util.UUID;
 
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -20,13 +26,28 @@ public class ProductController {
     }
 
     @GetMapping
-    public List<Product> getProducts() {
-        return productService.getProducts();
+    public List<Product> viewProducts(
+            @RequestParam(required = false) String filter,
+            Model model,
+            @PageableDefault(sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable
+    ) {
+        Page<Product> page;
+
+        if (filter != null && !filter.isEmpty()) {
+            page = productService.findAllByNameContaining(filter, pageable);
+        } else {
+            page = productService.findAll(pageable);
+        }
+        model.addAttribute("page", page);
+        model.addAttribute("url", "/products");
+        model.addAttribute("filter", filter);
+
+        return page.getContent();
     }
 
     @GetMapping("{id}")
-    public Product getProduct(@PathVariable String id) {
-        return productService.getProduct(Long.valueOf(id));
+    public Product getProduct(@PathVariable UUID id) {
+        return productService.getProduct(id);
     }
 
     @PostMapping
@@ -35,13 +56,13 @@ public class ProductController {
     }
 
     @PutMapping
-    public Product update(@RequestBody Product product, @RequestParam Long id) {
-        product.setId(id);
+    public Product update(@RequestBody Product product) {
+        product.setId(product.getId());
         return productService.save(product);
     }
 
-    @DeleteMapping
-    public void delete(@RequestParam Long id) {
+    @DeleteMapping("{id}")
+    public void delete(@PathVariable UUID id) {
         productService.delete(id);
     }
 }

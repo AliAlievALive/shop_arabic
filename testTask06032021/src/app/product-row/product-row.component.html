@@ -1,0 +1,11 @@
+<div style="display: grid; grid-template-columns: 25% 15% 10% 15% 20% 10%; grid-gap: 5px">
+  <div>{{product.name}}</div>
+  <div>{{product.article}}</div>
+  <div>{{product.price}}</div>
+  <div>{{product.in_stock}}</div>
+  <div>{{product.dateCreated | date: 'dd.MM.yyyy HH:mm'}}</div>
+  <span style="position: absolute; right: 0">
+    <input type="button" value="Edit" (click)="edit(product)">
+    <input type="button" value="&times;" (click)="delete(product)">
+  </span>
+</div>
