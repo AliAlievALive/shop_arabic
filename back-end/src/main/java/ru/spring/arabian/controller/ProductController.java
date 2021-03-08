@@ -56,13 +56,13 @@ public class ProductController {
     }
 
     @PutMapping
-    public Product update(@RequestBody Product product, @RequestParam UUID id) {
-        product.setId(id);
+    public Product update(@RequestBody Product product) {
+        product.setId(product.getId());
         return productService.save(product);
     }
 
-    @DeleteMapping
-    public void delete(@RequestParam UUID id) {
+    @DeleteMapping("{id}")
+    public void delete(@PathVariable UUID id) {
         productService.delete(id);
     }
 }

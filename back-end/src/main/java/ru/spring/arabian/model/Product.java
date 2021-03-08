@@ -44,4 +44,13 @@ public class Product {
     @CreationTimestamp
     @Column(name = "created_date")
     private Date dateCreated;
+
+    public Product(UUID id, String name, double price, int article, int in_stock) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.article = article;
+        this.in_stock = in_stock;
+        this.dateCreated = new Date();
+    }
 }
