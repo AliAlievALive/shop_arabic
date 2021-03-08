@@ -4,5 +4,5 @@ export interface Product {
   article: number;
   price: number;
   in_stock: number;
-  created_date: Date;
+  dateCreated?: Date;
 }

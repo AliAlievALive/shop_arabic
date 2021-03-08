@@ -1,34 +1,36 @@
 <form>
-  <label for="name"> Наименование </label>
+  <p>
+    <label for="name"> Наименование </label>
   <input type="text"
          placeholder="Наименование"
          [(ngModel)]="newProduct.name"
          name="name"
          id="name"
   >
+  </p>
+  <p>
   <label for="name"> Артикль </label>
   <input type="number"
          placeholder="Артикль"
          [(ngModel)]="newProduct.article"
          name="article"
   >
+  </p>
+  <p>
   <label for="name"> Цена </label>
   <input type="number"
          placeholder="Цена"
          [(ngModel)]="newProduct.price"
          name="price"
   >
+  </p>
+  <p>
   <label for="name"> Количество на складе </label>
   <input type="number"
          placeholder="Количество на складе"
          [(ngModel)]="newProduct.in_stock"
          name="in_stock"
   >
-  <label for="name"> Дата производства </label>
-  <input type="date"
-         placeholder="Дата производства"
-         [(ngModel)]="newProduct.created_date"
-         name="create_date"
-  >
+  </p>
 </form>
 <button type="submit" (click)="save()">Сохранить товар</button>

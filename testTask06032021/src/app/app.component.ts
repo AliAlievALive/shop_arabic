@@ -10,18 +10,16 @@ import {HttpService} from './services/http.service';
 export class AppComponent {
   title = 'shop';
   products: Array<Product>;
-  productToUpdate: Product;
 
   constructor(private http: HttpService) {
     this.getProductsFromServer();
   }
 
   getProductsFromServer(): void {
-    this.products = this.http.getProducts();
-  }
-
-  updatedProduct(productToUpdate: Product): void {
-    this.productToUpdate = productToUpdate;
+    this.http.getProducts().subscribe(products => {
+      console.log(products);
+      this.products = products;
+    });
   }
 
   deleteProduct(product: Product): void {
